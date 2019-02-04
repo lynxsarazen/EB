@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JMBG Validacija</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Open+Sans');
+        @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+        body {
+            background: url("http://4.bp.blogspot.com/-73tJ0eD8H_Y/TsXyN9naATI/AAAAAAAAABQ/NEA5WZnVWNE/s1600/stacks-of-paper.jpg") no-repeat center;
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+
+        h1 {
+            font-size: 1.5em;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, .9);
+            display: flex;
+            flex-direction: column;
+            width: 20%;
+            border: 1px solid #985e0e;
+            padding: 15px;
+            margin: 0 auto;
+            font-size: 1.3em;
+        }
+
+        .input {
+            font-size: 1rem;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+
+        label {
+            position: relative;
+            margin: 5px 0;
+        }
+
+        #jmbg {
+            border: 1px dashed #985e0e;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>JMBG Validacija</h1>
+    <label>Korisnik: <input type="text" class="input" id="ime" placeholder="Ime i prezime"></label>
+    <label>Datum rođenja: <input class="input" type="date" id="rodjeni"></label>
+    <label>Mesto rođenja: 
+    <select class="input" id="region">
+        <option value="71" >Beograd</option>
+        <option value="72" >Kragujevac</option>
+        <option value="72">Jagodina</option>
+        <option value="73">Nis</option>
+        <option value="73">Pirot</option>
+        <option value="73">Toplica</option>
+        <option value="74">Leskovac</option>
+        <option value="74">Vranje</option>
+        <option value="75">Zajecar</option>
+        <option value="75">Bor</option>
+        <option value="76">Smederevo</option>
+        <option value="76">Pozarevac</option>
+        <option value="77">Macva</option>
+        <option value="77">Kolubara</option>
+        <option value="78">Cacak</option>
+        <option value="78">Kraljevo</option>
+        <option value="78">Krusevac</option>
+        <option value="79">Uzice</option>
+        <option value="80">Novi Sad</option>
+        <option value="81">Sombor</option>
+        <option value="82">Subotica</option>
+        <!-- <option value="">Vrbas</option> -->
+        <option value="87">Kikinda</option>
+        <option value="85">Zrenjanin</option>
+        <option value="86">Pancevo</option>
+        <option value="86">Vrsac</option>
+        <option value="88">Ruma</option>
+        <option value="88">Sr. Mitrovica</option>
+        <option value="91">Pristina</option>
+        <option value="92">Kos. Mitrovica</option>
+        <option value="93">Pec</option>
+        <option value="94">Djakovica</option>
+        <option value="95">Prizren</option>
+        <option value="96">Gnjilane</option>
+        <option value="96">Kos. Kamenica</option>
+        <option value="96">Vitina</option>
+        <option value="96">Novo Brdo</option>
+        <option value="46">Strumica</option>
+        <option value="23">Kotor</option>
+    </select></label>
+    <span>Rod</span>
+    <label><input type="radio" name="pol" value="Z"> Ženski</label>
+    <label><input type="radio" name="pol" value="M"> Muški</label>
+    <label>
+        <input type="text" id="jmbg" placeholder="JMBG" size="13">
+    </label>
+    <button type="button" onclick="validacija()">Proveri</button>
+</div>
+
+
+</body>
+
+<script>
+    
+function validacija() 
+{   
+    //ekstrakcija podataka za proveru datuma rođenja, region i pol i kontrolni broj
+    var J1 = '';
+    var input2 = document.getElementById('rodjeni').value;
+    var datum = input2.split('-');
+    var god = datum[0].slice(1);
+    J1 = datum[2] + datum[1] + god;
+    var region = document.getElementById('region').value;
+    var pol = document.querySelector('input[name="pol"]:checked').value;
+    
+    //jmbg validacija
+    var jmbg = document.getElementById('jmbg').value;
+    if (/^\d{13}$/g.test(jmbg) == false) {
+        alert('Unesite vaš JMBG.')  
+    }
+    var J2 = jmbg.slice(0,7);
+    var R2 = jmbg.slice(7,9);
+    var B2 = jmbg.substr(9,3);
+    var K2 = jmbg.substr(12);
+
+    var S = 7*parseInt(jmbg[0])+6*parseInt(jmbg[1])+5*parseInt(jmbg[2])+4*parseInt(jmbg[3])+3*parseInt(jmbg[4])+2*parseInt(jmbg[5])+7*parseInt(jmbg[6])+6*parseInt(jmbg[7])+5*parseInt(jmbg[8])+4*parseInt(jmbg[9])+3*parseInt(jmbg[10])+2*parseInt(jmbg[11]);
+    var K1;
+    if (S%11 == 0) {
+        K1 = 0;
+        if (K2!=K1) {
+        	alert('Uneli ste pogrešan broj. Molim Vas unesite ponovo vaš JMBG.')
+        }
+    }  else if (S%11 > 1){
+        K1 = 11 - S%11;
+        if (K2!=K1) {
+        	alert('Uneli ste pogrešan broj. Molim Vas unesite ponovo vaš JMBG.')
+        }        
+    } else if (S%11 == 1) {
+        alert('Uneli ste pogrešan broj. Molim Vas unesite ponovo vaš JMBG.')
+    }  
+    
+  // validacija za ime i prezime
+  var input1 = document.getElementById('ime').value;
+  if (/^[A-ZČĆŠĐŽ]{1}([a-zčćšđž]{2,12})\s[A-ZČĆŠĐŽ]{1}([a-zčćšđž]{2,12})(\s?[A-zčćšđž])*$/.test(input1) == false)
+  { 
+   alert('Unesite pravilno Vaše ime i prezime.');
+  };
+  // validacija za datum rođenja
+  if (/([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/.test(input2) == false)
+  { 
+   alert('Unesite pravilno Vaš datum rođenja.');
+  };
+  if (J1 !== J2) {
+    alert('Vaš JMBG broj se ne slaže sa datumom rođenja.');   
+  };
+  // validacija za region
+  if (region !== R2) {
+    alert('Vaš JMBG broj se ne slaže sa mestom rođenja.');   
+  };
+  // validacija za pol
+  if (pol=='M'){
+      if (B2>499 && B2<1000){
+      alert('Uneli ste pogrešan JMBG');
+      } 
+  } else if (pol=='Z'){
+      if(B2>=0 && B2<500){
+        alert('Uneli ste pogrešan JMBG');  
+      } 
+  } else{
+  alert('Nice try');
+  }
+  
+};
+validacija();
+</script>
+</html>

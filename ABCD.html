@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title><script src="ABCD.js"></script>
+</head>
+<body>
+    
+        <main></main>
+        <script>
+            var div = document.createElement("DIV");
+            div.setAttribute("id", "ispis");
+    
+            var main = document.querySelector("main");
+            // var main = document.getElementsByTagName("main")[0];
+    
+            main.appendChild(div);
+    
+            var komentar = document.createComment(" ovo je komentar");
+            document.getElementById('ispis').appendChild(komentar);
+
+        var p = document.createElement("p");
+        
+        div.appendChild(p);
+    
+        </script>
+    
+    
+</body>
+</html>

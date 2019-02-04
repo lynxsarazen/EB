@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+<label for="Ime">Unesite ime:</label>
+<input type="text" name="Ime" id="Ime">
+<br>
+
+<label for="Prezime">Unesite prezime:</label>
+<input type="text" name="Prezime" id="Prezime">
+<br>
+<label for="IiP">Unesite ime i prezime:</label>
+<input type="text" name="IiP" id="IiP">
+<br>
+<label for="telefon">Unesite broj telefona:</label>
+<input type="text" name="tel" id="tel">
+<br>
+<label for="email">Unesite e-mail adresu</label>
+<input type="email" name="email" id="email">
+<br>
+<label for="brracuna">Unesite broj racuna</label>
+<input type="text" name="brracun" id="brracun">
+<br>
+<button onclick="myFunction()">Proveri</button>
+
+    </form>
+    <script>
+   var chkName = /^[A-Z][a-z]{2,12}$/;
+var chkLName = /^[A-Z][a-z]{2,12}$/;
+var chkNumber = /^\d{3}\/(\d{3}-?\d{4}|\d{4}-?\d{3})$/;
+var chkMail = /^[a-z][a-z.-]+@[a-z]{3,}.[a-z]{2,3}$/;
+var chkAccNr = /^\d{4}-\d{4}-\d{4}-\d{4}$/;
+
+function proba() {
+    var fName = document.getElementById("fName").value;
+    if (chkName.test(fName)){
+    document.getElementById("ime").innerHTML = "True";
+    }
+    else{
+    document.getElementById("ime").innerHTML = "False";
+    }
+    var lName = document.getElementById("lName").value;
+    if (chkName.test(lName)){
+    document.getElementById("prezime").innerHTML = "True";
+    }
+    else{
+    document.getElementById("prezime").innerHTML = "False";
+    }
+    var number = document.getElementById("number").value;
+    if (chkNumber.test(number)){
+    document.getElementById("broj").innerHTML = "True";
+    }
+    else{
+    document.getElementById("broj").innerHTML = "False";
+    }
+    var mail = document.getElementById("email").value;
+    if (chkMail.test(mail)){
+    document.getElementById("mejl").innerHTML = "True";
+    }
+    else{
+    document.getElementById("mejl").innerHTML = "False";
+    }
+    var accNr = document.getElementById("accNumber").value;
+    if (chkAccNr.test(accNr)){
+    document.getElementById("brRacuna").innerHTML = "True";
+    }
+    else{
+    document.getElementById("brRacuna").innerHTML = "False";
+    }
+    document.getElementById("fullName").value = fName+" "+lName;
+
+}
+    
+    </script>
+</body>
+</html>
